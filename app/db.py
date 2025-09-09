@@ -1,7 +1,13 @@
+# app/db.py
+import os
 from motor.motor_asyncio import AsyncIOMotorClient
+from dotenv import load_dotenv
 
-# Update the MongoDB URI if needed
-MONGO_DETAILS = "mongodb+srv://apollo-gear:apollo-gear@cluster0.v6dfbfz.mongodb.net/metricsWithPy?retryWrites=true&w=majority&appName=Cluster0"
+# Load environment variables from .env
+load_dotenv()
+
+# Get MongoDB URI from environment
+MONGO_DETAILS = os.getenv("MONGO_DETAILS")
 
 client = AsyncIOMotorClient(MONGO_DETAILS)
 database = client.fastapi_metrics
